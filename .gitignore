@@ -1,0 +1,11 @@
+
+### ###
+/bin/php_microservices_client/src/Commands/ApiCommandDeveloper.php
+/www/symfony_api_server/vendor/
+/bin/php_microservices_client/vendor/
+!/var/**/
+!/mysql/**/
+###< ignore the logs dir content ###
+!/logs/**/
+
+

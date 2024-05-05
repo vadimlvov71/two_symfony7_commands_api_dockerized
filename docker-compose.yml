@@ -1,0 +1,72 @@
+version: '3'
+services:
+    nginx:
+        container_name: nginx_microservices
+        image: nginx:latest
+        # mapping ports
+        ports:
+            - "89:80"
+        # mapping directories
+        volumes:
+            - ./nginx:/etc/nginx/conf.d
+            - ./www:/var/www
+            - ./logs:/var/log/nginx
+        links:
+            - php_microservices_server
+        depends_on:
+            - php_microservices_server
+            - php_microservices_client
+        #restart: always
+    php_microservices_server:
+        container_name: php_microservices_server
+
+        build: ./images/php_microservices_server
+
+        links:
+            - mysql_microservices
+        volumes:
+            - ./www:/var/www
+        #restart: always
+    php_microservices_client:
+        container_name: php_microservices_client
+        # directory for php dockerfile
+        build: ./images/php_microservices_client
+        
+        ports:
+        - "9001:9000"
+        volumes:
+            - ./bin/php_microservices_client:/srv/src/app
+        #links:
+         #   - php_microservices_server
+        #tty: true
+        #restart: always
+    mysql_microservices:
+        container_name: mysql_microservices
+        image: mysql:8
+        ports:
+            - "3312:3306"
+        volumes:
+            - ./mysql:/var/lib/mysql
+        # задаем пароль для root пользователя
+        environment:
+            MYSQL_USER: test
+            MYSQL_PASSWORD: test
+            MYSQL_ROOT_PASSWORD: secret
+        #restart: always
+    phpmyadmin_microservices:
+        container_name: phpmyadmin_microservices
+        image: phpmyadmin/phpmyadmin:latest
+        environment:
+            PMA_HOST: mysql_microservices
+        #PMA_USER: root
+        #PMA_PASSWORD: root
+        ports:
+        - "8088:80"
+        #restart: always
+
+   
+    
+   
+   
+
+         

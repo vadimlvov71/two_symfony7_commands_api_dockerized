@@ -1,0 +1,33 @@
+#!/usr/bin/env php
+<?php
+
+use ApiApp\Commands\CreateGroupCommand;
+use ApiApp\Commands\UpdateGroupCommand;
+use ApiApp\Commands\DeleteGroupCommand;
+use ApiApp\Commands\CreateUserCommand;
+use ApiApp\Commands\UpdateUserCommand;
+use ApiApp\Commands\ListUserCommand;
+use Symfony\Component\Console\Application;
+
+if (file_exists(__DIR__ . '/../../autoload.php')) {
+    require __DIR__ . '/../../autoload.php';
+} else {
+    require __DIR__ . '/vendor/autoload.php';
+}
+
+/**
+ * Start the console application.
+ */
+
+$app = new Application('Hello World', '1.0.0');
+//$app->setDefaultCommand("hello");
+$api_host = "nginx";
+$app->add(new CreateGroupCommand($api_host));
+$app->add(new UpdateGroupCommand($api_host));
+$app->add(new DeleteGroupCommand($api_host));
+$app->add(new CreateUserCommand($api_host));
+$app->add(new UpdateUserCommand($api_host));
+$app->add(new ListUserCommand($api_host));
+
+$app->run();
+

@@ -1,0 +1,3 @@
+services:
+    App\Commands\CreateGroupCommand:
+        $appEnv:         '%env(APP_ENV)%'
