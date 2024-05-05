@@ -33,6 +33,10 @@ composer install
 ```sh
 php bin/console doctrine:migrations:migrate
 ```
+create fixture:
+```sh
+php bin/console doctrine:fixture:load
+```
 3. client container entry:
  ```sh
 docker exec -it php_microservices_client bash
