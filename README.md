@@ -33,7 +33,7 @@ composer install
 ```sh
 php bin/console doctrine:migrations:migrate
 ```
-create fixture: TODO
+create fixture: TODO can`t add assosiation so users added without foreign keys
 ```sh
 #php bin/console doctrine:fixture:load
 ```
