@@ -14,7 +14,8 @@ class GroupFixtures extends Fixture //implements DependentFixtureInterface
         $groups = ['Group1', 'Group2', 'Group3'];
 
         foreach ($groups as $groupName) {
-            $group = new Group($groupName);
+            $group = new Group();
+            $group->setName($groupName);
             $manager->persist($group);
             $manager->flush();
 

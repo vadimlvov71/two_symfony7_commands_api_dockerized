@@ -22,9 +22,9 @@ class Group
     #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'group')]
     private Collection $users;
 
-    public function __construct($name)
+    public function __construct()
     {
-        $this->name = $name;
+       // $this->name = $name;
         $this->users = new ArrayCollection();
     }
 
